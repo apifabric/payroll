@@ -1,0 +1,566 @@
+about:
+  date: November 08, 2024 05:31:19
+  recent_changes: works with modified safrs-react-admin
+  version: 0.0.0
+api_root: '{http_type}://{swagger_host}:{port}/{api}'
+authentication: '{system-default}'
+entities:
+  Attendance:
+    columns:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+      template: integer
+      type: INTEGER
+    - name: employee_id
+      required: true
+      template: integer
+      type: INTEGER
+    - name: date
+      type: DATETIME
+    - name: status
+      required: true
+      template: text
+      type: VARCHAR
+    description: Tracks attendance records including presence days and absences.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: id
+    home_template: home_template.html
+    info_list: Tracks attendance records including presence days and absences.
+    label: Attendance
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: toone
+      fks:
+      - employee_id
+      name: employee
+      resource: Employee
+    type: Attendance
+  Benefit:
+    columns:
+    - label: ' name*'
+      name: name
+      required: true
+      search: true
+      sort: true
+      template: text
+      type: VARCHAR
+    - name: description
+      template: text
+      type: TEXT
+    - name: id
+      template: integer
+      type: INTEGER
+    description: Enumerates possible employee benefits and descriptions.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: name
+    home_template: home_template.html
+    info_list: Enumerates possible employee benefits and descriptions.
+    label: Benefit
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: tomany
+      fks:
+      - benefit_id
+      name: EmployeeBenefitList
+      resource: EmployeeBenefit
+    type: Benefit
+  Deduction:
+    columns:
+    - label: ' name*'
+      name: name
+      required: true
+      search: true
+      sort: true
+      template: text
+      type: VARCHAR
+    - name: description
+      template: text
+      type: TEXT
+    - name: amount
+      template: real
+      type: FLOAT
+    - name: id
+      template: integer
+      type: INTEGER
+    description: Lists deductions applicable to employees.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: name
+    home_template: home_template.html
+    info_list: Lists deductions applicable to employees.
+    label: Deduction
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: tomany
+      fks:
+      - deduction_id
+      name: EmployeeDeductionList
+      resource: EmployeeDeduction
+    type: Deduction
+  Department:
+    columns:
+    - label: ' name*'
+      name: name
+      required: true
+      search: true
+      sort: true
+      template: text
+      type: VARCHAR
+    - name: manager_id
+      template: integer
+      type: INTEGER
+    - name: id
+      template: integer
+      type: INTEGER
+    description: Holds department information and names.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: name
+    home_template: home_template.html
+    info_list: Holds department information and names.
+    label: Department
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: tomany
+      fks:
+      - department_id
+      name: EmployeeList
+      resource: Employee
+    - direction: toone
+      fks:
+      - manager_id
+      name: manager
+      resource: Employee
+    type: Department
+  Employee:
+    columns:
+    - label: ' first_name*'
+      name: first_name
+      required: true
+      search: true
+      sort: true
+      template: text
+      type: VARCHAR
+    - name: department_id
+      template: integer
+      type: INTEGER
+    - name: job_id
+      template: integer
+      type: INTEGER
+    - name: manager_id
+      template: integer
+      type: INTEGER
+    - name: last_name
+      required: true
+      template: text
+      type: VARCHAR
+    - name: email
+      required: true
+      template: text
+      type: VARCHAR
+    - name: phone_number
+      template: text
+      type: VARCHAR
+    - name: hire_date
+      type: DATETIME
+    - name: salary
+      template: real
+      type: FLOAT
+    - name: id
+      template: integer
+      type: INTEGER
+    description: Stores information about employees, including personal and job details.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: first_name
+    home_template: home_template.html
+    info_list: Stores information about employees, including personal and job details.
+    label: Employee
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: tomany
+      fks:
+      - employee_id
+      name: AttendanceList
+      resource: Attendance
+    - direction: tomany
+      fks:
+      - manager_id
+      name: DepartmentList
+      resource: Department
+    - direction: tomany
+      fks:
+      - manager_id
+      name: EmployeeList
+      resource: Employee
+    - direction: tomany
+      fks:
+      - employee_id
+      name: EmployeeBenefitList
+      resource: EmployeeBenefit
+    - direction: tomany
+      fks:
+      - employee_id
+      name: EmployeeDeductionList
+      resource: EmployeeDeduction
+    - direction: tomany
+      fks:
+      - employee_id
+      name: LeaveRequestList
+      resource: LeaveRequest
+    - direction: tomany
+      fks:
+      - employee_id
+      name: PayrollList
+      resource: Payroll
+    - direction: tomany
+      fks:
+      - employee_id
+      name: PerformanceReviewList
+      resource: PerformanceReview
+    - direction: tomany
+      fks:
+      - employee_id
+      name: PromotionList
+      resource: Promotion
+    - direction: toone
+      fks:
+      - department_id
+      name: department
+      resource: Department
+    - direction: toone
+      fks:
+      - job_id
+      name: job
+      resource: Job
+    - direction: toone
+      fks:
+      - manager_id
+      name: manager_
+      resource: Employee
+    type: Employee
+  EmployeeBenefit:
+    columns:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+      template: integer
+      type: INTEGER
+    - name: benefit_id
+      required: true
+      template: integer
+      type: INTEGER
+    - name: employee_id
+      required: true
+      template: integer
+      type: INTEGER
+    description: Connects employees with their assigned benefits.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: id
+    home_template: home_template.html
+    info_list: Connects employees with their assigned benefits.
+    label: EmployeeBenefit
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: toone
+      fks:
+      - benefit_id
+      name: benefit
+      resource: Benefit
+    - direction: toone
+      fks:
+      - employee_id
+      name: employee
+      resource: Employee
+    type: EmployeeBenefit
+  EmployeeDeduction:
+    columns:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+      template: integer
+      type: INTEGER
+    - name: deduction_id
+      required: true
+      template: integer
+      type: INTEGER
+    - name: employee_id
+      required: true
+      template: integer
+      type: INTEGER
+    description: Links employees to their respective deductions.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: id
+    home_template: home_template.html
+    info_list: Links employees to their respective deductions.
+    label: EmployeeDeduction
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: toone
+      fks:
+      - deduction_id
+      name: deduction
+      resource: Deduction
+    - direction: toone
+      fks:
+      - employee_id
+      name: employee
+      resource: Employee
+    type: EmployeeDeduction
+  Job:
+    columns:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+      template: integer
+      type: INTEGER
+    - name: title
+      required: true
+      template: text
+      type: VARCHAR
+    - name: min_salary
+      template: real
+      type: FLOAT
+    - name: max_salary
+      template: real
+      type: FLOAT
+    description: Lists all jobs and descriptions.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: id
+    home_template: home_template.html
+    info_list: Lists all jobs and descriptions.
+    label: Job
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: tomany
+      fks:
+      - job_id
+      name: EmployeeList
+      resource: Employee
+    - direction: tomany
+      fks:
+      - new_job_id
+      name: PromotionList
+      resource: Promotion
+    type: Job
+  LeaveRequest:
+    columns:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+      template: integer
+      type: INTEGER
+    - name: employee_id
+      required: true
+      template: integer
+      type: INTEGER
+    - name: start_date
+      required: true
+      type: DATETIME
+    - name: end_date
+      required: true
+      type: DATETIME
+    - name: status
+      template: text
+      type: VARCHAR
+    description: Manages employee leave applications and statuses.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: id
+    home_template: home_template.html
+    info_list: Manages employee leave applications and statuses.
+    label: LeaveRequest
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: toone
+      fks:
+      - employee_id
+      name: employee
+      resource: Employee
+    type: LeaveRequest
+  Payroll:
+    columns:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+      template: integer
+      type: INTEGER
+    - name: employee_id
+      required: true
+      template: integer
+      type: INTEGER
+    - name: payment_date
+      type: DATETIME
+    - name: amount
+      required: true
+      template: real
+      type: FLOAT
+    - name: tax_deducted
+      template: real
+      type: FLOAT
+    description: Records payroll transactions and amounts.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: id
+    home_template: home_template.html
+    info_list: Records payroll transactions and amounts.
+    label: Payroll
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: toone
+      fks:
+      - employee_id
+      name: employee
+      resource: Employee
+    type: Payroll
+  PerformanceReview:
+    columns:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+      template: integer
+      type: INTEGER
+    - name: employee_id
+      required: true
+      template: integer
+      type: INTEGER
+    - name: review_date
+      type: DATETIME
+    - name: rating
+      required: true
+      template: integer
+      type: INTEGER
+    - name: comments
+      template: text
+      type: TEXT
+    description: Stores evaluations of employee performance.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: id
+    home_template: home_template.html
+    info_list: Stores evaluations of employee performance.
+    label: PerformanceReview
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: toone
+      fks:
+      - employee_id
+      name: employee
+      resource: Employee
+    type: PerformanceReview
+  Promotion:
+    columns:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+      template: integer
+      type: INTEGER
+    - name: employee_id
+      required: true
+      template: integer
+      type: INTEGER
+    - name: new_job_id
+      required: true
+      template: integer
+      type: INTEGER
+    - name: promotion_date
+      type: DATETIME
+    description: Contains records of employee promotions and new roles.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: id
+    home_template: home_template.html
+    info_list: Contains records of employee promotions and new roles.
+    label: Promotion
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: toone
+      fks:
+      - employee_id
+      name: employee
+      resource: Employee
+    - direction: toone
+      fks:
+      - new_job_id
+      name: new_job
+      resource: Job
+    type: Promotion
+settings:
+  HomeJS: /admin-app/home.js
+  max_list_columns: 8
+  style_guide:
+    applicationLocales:
+    - en
+    - es
+    currency_symbol: $
+    currency_symbol_position: left
+    date_format: LL
+    decimal_max: '1000000000'
+    decimal_min: '0'
+    decimal_separator: .
+    edit_on_mode: dblclick
+    exclude_listpicker: false
+    include_translation: false
+    keycloak_client_id: alsclient
+    keycloak_realm: kcals
+    keycloak_url: http://localhost:8080
+    locale: en
+    max_decimal_digits: '4'
+    min_decimal_digits: '2'
+    mode: tab
+    pick_style: list
+    serviceType: OntimizeEE
+    startSessionPath: /auth/login
+    style: light
+    thousand_separator: ','
+    use_keycloak: false

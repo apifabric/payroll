@@ -1,0 +1,37 @@
+<o-form-layout-manager attr="Job" mode="tab" title="JOB">
+    <div fxFill fxLayout="column" fxLayoutAlign="start">
+        <o-table 
+            attr="JobTable" 
+            service="Job" 
+            entity="Job" 
+            title="JOB"
+            keys="id"
+            columns="id;title;min_salary;max_salary" 
+            header-actions="R;D"
+            visible-columns="id;title;min_salary;max_salary"  
+            sort-columns="id" 
+            query-rows="20" 
+            quick-filter="yes"
+            row-height="medium" 
+            select-all-checkbox="true" 
+            pageable="yes"  
+            auto-adjust="true" 
+            virtual-scroll="yes" 
+            edition-mode="dblclick"
+            horizontal-scroll="yes"
+            show-title="yes"
+            export-button="yes">
+            
+            <o-table-column #id attr="id" title=" id*" type="integer" editable="no" required="no" content-align="center"></o-table-column>
+            
+            <o-table-column #title attr="title" title="title" editable="no" required="yes" content-align="left"></o-table-column>
+            
+            <o-table-column #min_salary attr="min_salary" title="min_salary" type="real" min-decimal-digits="2" max-decimal-digits="4" min="0" max="1000000.0000" content-align="center"></o-table-column>
+            
+            <o-table-column #max_salary attr="max_salary" title="max_salary" type="real" min-decimal-digits="2" max-decimal-digits="4" min="0" max="1000000.0000" content-align="center"></o-table-column>
+            
+            <o-table-context-menu></o-table-context-menu>
+            <o-table-paginator page-size-options="24;48;96"></o-table-paginator>
+        </o-table>
+    </div>
+</o-form-layout-manager>

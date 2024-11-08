@@ -1,0 +1,70 @@
+<o-form-layout-manager attr="Employee" mode="tab" title="EMPLOYEE">
+    <div fxFill fxLayout="column" fxLayoutAlign="start">
+        <o-table 
+            attr="EmployeeTable" 
+            service="Employee" 
+            entity="Employee" 
+            title="EMPLOYEE"
+            keys="id"
+            columns="first_name;department_id;job_id;manager_id;last_name;email;phone_number;hire_date;salary;id" 
+            header-actions="R;D"
+            visible-columns="first_name;department_id;job_id;manager_id;last_name;email;phone_number;hire_date;salary;id"  
+            sort-columns="first_name" 
+            query-rows="20" 
+            quick-filter="yes"
+            row-height="medium" 
+            select-all-checkbox="true" 
+            pageable="yes"  
+            auto-adjust="true" 
+            virtual-scroll="yes" 
+            edition-mode="dblclick"
+            horizontal-scroll="yes"
+            show-title="yes"
+            export-button="yes">
+            
+            <o-table-column #first_name attr="first_name" title=" first_name*" editable="no" required="yes" content-align="left"></o-table-column>
+            
+            <o-table-column attr="department_id" title="department_id">
+    <o-table-cell-renderer-service attr="department_id" 
+        service="Department" entity="DepartmentType" columns="id;name"
+        parent-keys="id:department_id"
+        value-column="name" keys="department_id"
+        visible-columns="name" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+            
+            <o-table-column attr="job_id" title="job_id">
+    <o-table-cell-renderer-service attr="job_id" 
+        service="Job" entity="JobType" columns="id;id"
+        parent-keys="id:job_id"
+        value-column="id" keys="job_id"
+        visible-columns="id" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+            
+            <o-table-column attr="manager_id" title="manager_id">
+    <o-table-cell-renderer-service attr="manager_id" 
+        service="Employee" entity="EmployeeType" columns="id;first_name"
+        parent-keys="id:manager_id"
+        value-column="first_name" keys="manager_id"
+        visible-columns="first_name" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+            
+            <o-table-column #last_name attr="last_name" title="last_name" editable="no" required="yes" content-align="left"></o-table-column>
+            
+            <o-table-column #email attr="email" title="email" editable="no" required="yes" content-align="left"></o-table-column>
+            
+            <o-table-column #phone_number attr="phone_number" title="phone_number" editable="no" required="no" content-align="left"></o-table-column>
+            
+            <o-date-input #hire_date attr="hire_date" type="timestamp" label="hire_date" editable="no" required="no" format="LL" fxFlex="20%" class="form-field"></o-date-input>
+            
+            <o-table-column #salary attr="salary" title="salary" type="real" min-decimal-digits="2" max-decimal-digits="4" min="0" max="1000000.0000" content-align="center"></o-table-column>
+            
+            <o-table-column #id attr="id" title="id" type="integer" editable="no" required="no" content-align="center"></o-table-column>
+            
+            <o-table-context-menu></o-table-context-menu>
+            <o-table-paginator page-size-options="24;48;96"></o-table-paginator>
+        </o-table>
+    </div>
+</o-form-layout-manager>

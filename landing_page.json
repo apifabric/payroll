@@ -1,0 +1,110 @@
+{
+    "name": "Auto HCM & Payroll",
+    "logo": {
+        "Type": "Logo",
+        "name": "auto-hcm-logo.png",
+        "description": "The official logo of Auto HCM & Payroll, depicting efficiency and simplicity."
+    },
+    "sections": [
+        {
+            "title": "Welcome to Auto HCM & Payroll",
+            "subtitle": "Streamline Your Workforce Management",
+            "name": "Hero Section",
+            "label": "home",
+            "content": "Welcome to **Auto HCM & Payroll**, your ultimate solution for streamlining human capital management and payroll processes. Experience simplicity, efficiency, and precision today!",
+            "order": 1,
+            "Type": "Hero",
+            "images": [
+                {
+                    "Type": "Hero",
+                    "name": "hero-image.jpg",
+                    "description": "A dynamic image showing streamlined workforce management."
+                }
+            ]
+        },
+        {
+            "title": "About Us",
+            "subtitle": "",
+            "name": "About Auto HCM & Payroll",
+            "label": "about",
+            "content": "**Our Mission**: To empower businesses by simplifying HR and payroll with our innovative, automated solutions. \n\n**Our Vision**: We envision a future where businesses of all sizes can optimize their workforce management with ease and accuracy.",
+            "order": 2,
+            "Type": "About",
+            "images": []
+        },
+        {
+            "title": "Our Services",
+            "subtitle": "Tailored Solutions for Every Business",
+            "name": "Service Offerings",
+            "label": "services",
+            "content": "- **Automated Payroll Processing**: Ensure accuracy and compliance effortlessly.  \n- **Comprehensive HCM System**: Manage your workforce efficiently.  \n- **Employee Self-Service Portals**: Empower your staff with easy access to their information.  \n- **Advanced Reporting & Analytics**: Gain insights to drive your business forward.",
+            "order": 3,
+            "Type": "Services",
+            "images": [
+                {
+                    "Type": "ItemListing",
+                    "name": "payroll-processing.jpg",
+                    "description": "Image representing automated payroll services."
+                },
+                {
+                    "Type": "ItemListing",
+                    "name": "hcm-system.jpg",
+                    "description": "Image showing an overview of the Human Capital Management system."
+                }
+            ]
+        },
+        {
+            "title": "Customer Testimonials",
+            "subtitle": "What Our Clients Say",
+            "name": "Client Testimonials",
+            "label": "testimonials",
+            "content": "\u201cAuto HCM & Payroll revolutionized our payroll processing. It's both time-saving and reliable!\u201d \u2013 **Jane Doe, HR Manager**  \n\n\u201cOur transition to automated HR management has been seamless thanks to Auto HCM's intuitive platform.\u201d \u2013 **John Smith, Operations Director**",
+            "order": 4,
+            "Type": "Testimonials",
+            "images": [
+                {
+                    "Type": "Testimonial",
+                    "name": "happy-customer1.jpg",
+                    "description": "A happy customer who uses Auto HCM & Payroll services."
+                },
+                {
+                    "Type": "Testimonial",
+                    "name": "happy-customer2.jpg",
+                    "description": "Another satisfied client sharing their positive experience."
+                }
+            ]
+        },
+        {
+            "title": "Get in Touch",
+            "subtitle": "We're Here to Help",
+            "name": "Contact Section",
+            "label": "contact",
+            "content": "Have questions? Ready to get started? Contact us today!  \n\n- **Email**: support@autohcm.com  \n- **Phone**: (123) 456-7890  \n- **Address**: 123 Business Way, Metropolis, Country",
+            "order": 5,
+            "Type": "Contact",
+            "images": [
+                {
+                    "Type": "Map",
+                    "name": "business-location-map.jpg",
+                    "description": "A map showing the location of Auto HCM & Payroll's headquarters."
+                }
+            ]
+        },
+        {
+            "title": "Let's Get Started",
+            "subtitle": "Join the Revolution in Workforce Management",
+            "name": "Call to Action",
+            "label": "get-started",
+            "content": "Ready to transform your HR and payroll processes? **Sign up now** to experience streamlined management like never before.  \n\n[Get Started](#)",
+            "order": 6,
+            "Type": "CallToAction",
+            "images": [
+                {
+                    "Type": "CallToAction",
+                    "name": "cta-image.jpg",
+                    "description": "An image encouraging viewers to take action and sign up."
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,384 @@
+about:
+  date: November 08, 2024 05:31:19
+  recent_changes: works with modified safrs-react-admin
+  version: 0.0.0
+api_root: '{http_type}://{swagger_host}:{port}/{api}'
+authentication: '{system-default}'
+info:
+  number_relationships: 14
+  number_tables: 12
+info_toggle_checked: true
+resources:
+  Attendance:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: employee_id
+      required: true
+    - name: date
+      type: DATETIME
+    - name: status
+      required: true
+    description: Tracks attendance records including presence days and absences.
+    info_list: Tracks attendance records including presence days and absences.
+    tab_groups:
+    - direction: toone
+      fks:
+      - employee_id
+      name: employee
+      resource: Employee
+    type: Attendance
+    user_key: id
+  Benefit:
+    attributes:
+    - label: ' name*'
+      name: name
+      required: true
+      search: true
+      sort: true
+    - name: description
+    - name: id
+    description: Enumerates possible employee benefits and descriptions.
+    info_list: Enumerates possible employee benefits and descriptions.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - benefit_id
+      name: EmployeeBenefitList
+      resource: EmployeeBenefit
+    type: Benefit
+    user_key: name
+  Deduction:
+    attributes:
+    - label: ' name*'
+      name: name
+      required: true
+      search: true
+      sort: true
+    - name: description
+    - name: amount
+    - name: id
+    description: Lists deductions applicable to employees.
+    info_list: Lists deductions applicable to employees.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - deduction_id
+      name: EmployeeDeductionList
+      resource: EmployeeDeduction
+    type: Deduction
+    user_key: name
+  Department:
+    attributes:
+    - label: ' name*'
+      name: name
+      required: true
+      search: true
+      sort: true
+    - name: manager_id
+    - name: id
+    description: Holds department information and names.
+    info_list: Holds department information and names.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - department_id
+      name: EmployeeList
+      resource: Employee
+    - direction: toone
+      fks:
+      - manager_id
+      name: manager
+      resource: Employee
+    type: Department
+    user_key: name
+  Employee:
+    attributes:
+    - label: ' first_name*'
+      name: first_name
+      required: true
+      search: true
+      sort: true
+    - name: department_id
+    - name: job_id
+    - name: manager_id
+    - name: last_name
+      required: true
+    - name: email
+      required: true
+    - name: phone_number
+    - name: hire_date
+      type: DATETIME
+    - name: salary
+    - name: id
+    description: Stores information about employees, including personal and job details.
+    info_list: Stores information about employees, including personal and job details.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - employee_id
+      name: AttendanceList
+      resource: Attendance
+    - direction: tomany
+      fks:
+      - manager_id
+      name: DepartmentList
+      resource: Department
+    - direction: tomany
+      fks:
+      - manager_id
+      name: EmployeeList
+      resource: Employee
+    - direction: tomany
+      fks:
+      - employee_id
+      name: EmployeeBenefitList
+      resource: EmployeeBenefit
+    - direction: tomany
+      fks:
+      - employee_id
+      name: EmployeeDeductionList
+      resource: EmployeeDeduction
+    - direction: tomany
+      fks:
+      - employee_id
+      name: LeaveRequestList
+      resource: LeaveRequest
+    - direction: tomany
+      fks:
+      - employee_id
+      name: PayrollList
+      resource: Payroll
+    - direction: tomany
+      fks:
+      - employee_id
+      name: PerformanceReviewList
+      resource: PerformanceReview
+    - direction: tomany
+      fks:
+      - employee_id
+      name: PromotionList
+      resource: Promotion
+    - direction: toone
+      fks:
+      - department_id
+      name: department
+      resource: Department
+    - direction: toone
+      fks:
+      - job_id
+      name: job
+      resource: Job
+    - direction: toone
+      fks:
+      - manager_id
+      name: manager_
+      resource: Employee
+    type: Employee
+    user_key: first_name
+  EmployeeBenefit:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: benefit_id
+      required: true
+    - name: employee_id
+      required: true
+    description: Connects employees with their assigned benefits.
+    info_list: Connects employees with their assigned benefits.
+    tab_groups:
+    - direction: toone
+      fks:
+      - benefit_id
+      name: benefit
+      resource: Benefit
+    - direction: toone
+      fks:
+      - employee_id
+      name: employee
+      resource: Employee
+    type: EmployeeBenefit
+    user_key: id
+  EmployeeDeduction:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: deduction_id
+      required: true
+    - name: employee_id
+      required: true
+    description: Links employees to their respective deductions.
+    info_list: Links employees to their respective deductions.
+    tab_groups:
+    - direction: toone
+      fks:
+      - deduction_id
+      name: deduction
+      resource: Deduction
+    - direction: toone
+      fks:
+      - employee_id
+      name: employee
+      resource: Employee
+    type: EmployeeDeduction
+    user_key: id
+  Job:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: title
+      required: true
+    - name: min_salary
+    - name: max_salary
+    description: Lists all jobs and descriptions.
+    info_list: Lists all jobs and descriptions.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - job_id
+      name: EmployeeList
+      resource: Employee
+    - direction: tomany
+      fks:
+      - new_job_id
+      name: PromotionList
+      resource: Promotion
+    type: Job
+    user_key: id
+  LeaveRequest:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: employee_id
+      required: true
+    - name: start_date
+      required: true
+      type: DATETIME
+    - name: end_date
+      required: true
+      type: DATETIME
+    - name: status
+    description: Manages employee leave applications and statuses.
+    info_list: Manages employee leave applications and statuses.
+    tab_groups:
+    - direction: toone
+      fks:
+      - employee_id
+      name: employee
+      resource: Employee
+    type: LeaveRequest
+    user_key: id
+  Payroll:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: employee_id
+      required: true
+    - name: payment_date
+      type: DATETIME
+    - name: amount
+      required: true
+    - name: tax_deducted
+    description: Records payroll transactions and amounts.
+    info_list: Records payroll transactions and amounts.
+    tab_groups:
+    - direction: toone
+      fks:
+      - employee_id
+      name: employee
+      resource: Employee
+    type: Payroll
+    user_key: id
+  PerformanceReview:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: employee_id
+      required: true
+    - name: review_date
+      type: DATETIME
+    - name: rating
+      required: true
+    - name: comments
+    description: Stores evaluations of employee performance.
+    info_list: Stores evaluations of employee performance.
+    tab_groups:
+    - direction: toone
+      fks:
+      - employee_id
+      name: employee
+      resource: Employee
+    type: PerformanceReview
+    user_key: id
+  Promotion:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: employee_id
+      required: true
+    - name: new_job_id
+      required: true
+    - name: promotion_date
+      type: DATETIME
+    description: Contains records of employee promotions and new roles.
+    info_list: Contains records of employee promotions and new roles.
+    tab_groups:
+    - direction: toone
+      fks:
+      - employee_id
+      name: employee
+      resource: Employee
+    - direction: toone
+      fks:
+      - new_job_id
+      name: new_job
+      resource: Job
+    type: Promotion
+    user_key: id
+settings:
+  HomeJS: /admin-app/home.js
+  max_list_columns: 8
+  style_guide:
+    applicationLocales:
+    - en
+    - es
+    currency_symbol: $
+    currency_symbol_position: left
+    date_format: LL
+    decimal_max: '1000000000'
+    decimal_min: '0'
+    decimal_separator: .
+    detail_mode: tab
+    edit_on_mode: dblclick
+    exclude_listpicker: false
+    include_translation: 'false'
+    keycloak_client_id: alsclient
+    keycloak_realm: kcals
+    keycloak_url: http://localhost:8080
+    locale: en
+    max_decimal_digits: '4'
+    min_decimal_digits: '2'
+    new_mode: dialog
+    pick_style: list
+    row_height: small,
+    serviceType: OntimizeEE
+    startSessionPath: /auth/login
+    style: light
+    thousand_separator: ','
+    use_keycloak: 'false'
